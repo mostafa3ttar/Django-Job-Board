@@ -7,6 +7,7 @@ Job :
     - vacancy
     - salary
     - category
+    - exprience
     
     - apply job
     - post job
