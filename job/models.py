@@ -2,6 +2,8 @@ from django.db import models
 import uuid
 from django.utils.text import slugify
 
+from users.models import User
+
 # Create your models here.
 
 """
@@ -20,6 +22,7 @@ JOB_TYPE = (
 
 
 class Job(models.Model):  #Class => Table
+    owner = models.ForeignKey(User, related_name='job_owner' ,on_delete=models.CASCADE)
     title = models.CharField(max_length=100)  # Column
     #location
     job_type = models.CharField(max_length=15, choices=JOB_TYPE)
@@ -47,6 +50,19 @@ class Job(models.Model):  #Class => Table
     
 class Category(models.Model):
     name = models.CharField(max_length=25)
+    
+    def __str__(self):
+        return self.name
+    
+    
+class Apply(models.Model):
+    job = models.ForeignKey(Job, verbose_name=("job_apply"), on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    email = models.EmailField(max_length=254)
+    website = models.URLField(max_length=200)
+    cv = models.FileField(upload_to='apply/%y%m%d')
+    cover_letter = models.TextField(max_length=500)
+    created_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
         return self.name
