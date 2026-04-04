@@ -15,6 +15,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -42,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "bootstrap4",
+    "phonenumber_field",
+    'django_countries',
     
 # My Apps
     'users',
@@ -140,3 +143,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY')
 
 AUTH_USER_MODEL = 'users.User'
+
+
