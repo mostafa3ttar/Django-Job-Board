@@ -19,12 +19,15 @@
 <form method="post" action="{% url 'login' %}">
   {% csrf_token %}
   {% bootstrap_form form %}
-  <input class="boxed-btn3 w-100" type="submit" value="login">
+  <input class="btn btn-default btn-lg boxed-btn3 w-100" type="submit" value="login">
   <input type="hidden" name="next" value="{{ next }}">
 </form>
 
 {# Assumes you set up the password_reset view in your URLConf #}
-<br>
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+
+<div class="d-flex justify-content-between mt-4">
+  <a class="btn btn-default btn-lg boxed-btn2 " href="{% url 'password_reset' %}">Lost password?</a>
+  <a class="btn btn-default btn-lg boxed-btn3 w-50" href="{% url 'accounts:signup' %}">Sign Up</a>
+</div>
 
 {% endblock %}
