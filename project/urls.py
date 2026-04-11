@@ -24,8 +24,8 @@ urlpatterns = [
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('admin/', admin.site.urls),
     path('jobs/', include('job.urls', namespace='jobs')),
-    # path('home/', include('home.urls')),
     path('contact/', include('contact.urls', namespace='contact')),
+    # path('home/', include('home.urls')),
     # path('blog/', include('blog.urls')),
 ]
 
