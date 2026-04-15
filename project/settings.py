@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "phonenumber_field",
     'django_countries',
     'django_filters',
+    "rest_framework",
     
 # My Apps
     'users',
