@@ -6,11 +6,19 @@ from .serializers import JobSerializer
 from rest_framework import generics
 
 
-@api_view(['GET'])
+@api_view(['GET','POST'])
 def job_list_api(request):
-    all_jobs = Job.objects.all()
-    data = JobSerializer(all_jobs, many=True).data
-    return Response({'data':data})
+    if request.method == 'GET':
+            
+        all_jobs = Job.objects.all()
+        serializer = JobSerializer(all_jobs, many=True).data
+        return Response({'data':serializer.data})
+    elif request.method == 'POST':
+        serializer = JobSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
 
 
 @api_view(['GET'])
@@ -20,7 +28,7 @@ def job_detail_api(request, id):
     return Response({'data':data})
 
 
-class JobListApi(generics.ListAPIView):
+class JobListApi(generics.ListCreateAPIView):
     queryset = Job.objects.all()
     serializer_class = JobSerializer
     
